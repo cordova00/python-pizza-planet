@@ -1,7 +1,7 @@
 import sqlite3
 from seed_constants import BEVERAGE_CHOICES, INGREDIENT_CHOICES, SIZE_CHOICES
 from fake_utils.fake_pizza_data import generate_client_names, generate_random_order
-from fake_utils.database_conection import insert_beverage, insert_ingredient, insert_order, insert_size
+from fake_utils.database_conection import insert_beverage, insert_ingredient, insert_order, insert_size, insert_ingredient_detail, insert_beverage_detail
 
 
 conn = sqlite3.connect('pizza.sqlite')
@@ -18,7 +18,6 @@ for orders in range(100):
     for ingredient in ingredient_details:
         ingredient_id = ingredient['ingredient']['_id']
         ingredient_price = ingredient['ingredient_price']
-        
 
     for beverage in beverage_details:
         beverage_id = beverage['beverage']['_id']

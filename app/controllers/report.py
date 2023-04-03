@@ -10,7 +10,6 @@ class ReportController():
 
     def create(self) -> dict:
         return {
-            'popular_ingredients': self.get_most_requested_items(search_for='ingredient_detail'),
             'month_with_more_sales': self.get_month_with_more_sales(),
             'best_customers': self.get_n_best_customers(number_of_customers=self.best_customers_count)
         }
