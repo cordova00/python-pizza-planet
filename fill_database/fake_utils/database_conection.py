@@ -14,36 +14,23 @@ def insert_size(cursor, size):
         print(f"Error: El valor '{size[0]}' ya existe en la tabla size.")
     else:
         # Si el valor no existe, se realiza la inserción
-        cursor.execute('''
-            INSERT INTO size (_id, name, price)
-            VALUES (?, ?, ?)
-        ''', size)
+        cursor.execute("INSERT INTO size (_id, name, price) VALUES (?, ?, ?)", size)
 
 def insert_ingredient(cursor, ingredient):
-    cursor.execute('''
-        SELECT COUNT(*) FROM ingredient WHERE _id=?
-    ''', (ingredient[0],))
-    count = cursor.fetchone()
-    if count:
-        print(f"El ingrediente con id {ingredient[0]} ya existe en la tabla.")
+    cursor.execute("SELECT _id FROM ingredient WHERE _id = ?", (ingredient[0],))
+    result = cursor.fetchone()
+    if result:
+        print(f"Error: El valor '{ingredient[0]}' ya existe en la tabla ingredient.")
     else:
-        cursor.execute('''
-            INSERT INTO ingredient (_id, name, price)
-            VALUES (?, ?, ?)
-        ''', ingredient)
+        cursor.execute("INSERT INTO ingredient (_id, name, price) VALUES (?, ?, ?)", ingredient)
         print(f"El ingrediente con id {ingredient[0]} ha sido insertado exitosamente.")
 
 
 def insert_beverage(cursor, beverage):
-    cursor.execute('''
-        SELECT COUNT(*) FROM beverage WHERE _id=?
-    ''', (beverage[0],))
-    count = cursor.fetchone()
-    if count:
-        print(f"La bebida con id {beverage[0]} ya existe en la tabla.")
-    else:
-        cursor.execute('''
-            INSERT INTO beverage (_id, name, price, size)
-            VALUES (?, ?, ?, ?)
-        ''', beverage)
-        print(f"La bebida con id {beverage[0]} ha sido insertada exitosamente.")
+    cursor.execute("SELECT _id FROM beverage WHERE _id = ?", (beverage[0],))
+    result = cursor.fetchone()
+    if result:
+        print(f"Error: El valor '{beverage[0]}' ya existe en la tabla beverage.")
+    cursor.execute("INSERT INTO beverage (_id, name, price)  VALUES (?, ?, ?)", beverage)
+    print(f"La bebida con id {beverage[0]} ha sido insertada exitosamente.")
+
