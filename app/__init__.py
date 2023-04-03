@@ -4,6 +4,7 @@ from app.services.beverage import BeverageService
 from app.services.ingredient import IngredientService
 from app.services.order import OrderService
 from app.services.size import SizeService
+from app.services.report_service import ReportService
 from flask import Blueprint, Flask
 
 
@@ -14,7 +15,7 @@ def create_app(config_class: str):
 
 def register_blueprints(flask_app):
     services = [BeverageService, IngredientService,
-                OrderService, SizeService,]
+                OrderService, SizeService, ReportService]
     for service_class in services:
         blueprint = service_class.create_blueprint()
         prefix = f'/{service_class.blueprint_name.replace("_", "-")}'
